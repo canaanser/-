@@ -1,0 +1,78 @@
+//mtk cts test
+java -cp D:\11_r6\android-cts\tools\compatibility-common-util-tests.jar;D:\11_r6\android-cts\tools\compatibility-host-util.jar;D:\11_r6\android-cts\tools\compatibility-host-util-tests.jar;D:\11_r6\android-cts\tools\compatibility-tradefed-tests.jar;D:\11_r6\android-cts\tools\cts-tradefed.jar;D:\11_r6\android-cts\tools\cts-tradefed-tests.jar;D:\11_r6\android-cts\tools\host-libprotobuf-java-full.jar;D:\11_r6\android-cts\tools\hosttestlib.jar;D:\11_r6\android-cts\tools\loganalysis.jar;D:\11_r6\android-cts\tools\tradefed.jar -DCTS_ROOT=D: com.android.compatibility.common.tradefed.command.CompatibilityConsole
+java -cp D:\android-cts\tools\compatibility-common-util-tests.jar;D:\android-cts\tools\compatibility-host-util.jar;D:\android-cts\tools\compatibility-host-util-tests.jar;D:\android-cts\tools\compatibility-tradefed-tests.jar;D:\android-cts\tools\cts-tradefed.jar;D:\android-cts\tools\cts-tradefed-tests.jar;D:\android-cts\tools\host-libprotobuf-java-full.jar;D:\android-cts\tools\hosttestlib.jar;D:\android-cts\tools\loganalysis.jar;D:\android-cts\tools\tradefed.jar -DCTS_ROOT=D: com.android.compatibility.common.tradefed.command.CompatibilityConsole
+//建立测试用例
+32bit:
+            run cts -s e14997e9  -m CtsCameraTestCases -a armeabi-v7a --skip-preconditions   
+            run cts  -s e14997e1  -m CtsAppTestCases -t  android.app.cts.SystemFeaturesTest  -a armeabi-v7a --skip-preconditions   
+         64bit:  
+            run cts -s a51c6340  -m CtsCameraTestCases -a arm64-v8a  --skip-preconditions
+            run cts  -s a51c6340  -m CtsAppTestCases -t  android.app.cts.SystemFeaturesTest  -a arm64-v8a  --skip-preconditions
+//建立单独用例
+run cts -m CtsCameraTestCases -t android.hardware.camera2.cts.CameraDeviceTest#testCameraDeviceStillTemplate -a armeabi-v7a
+
+
+//andriod adb run app
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+/*打开应用后输入该指令可得包名*/
+adb shell dumpsys window | findstr mCurrentFocus
+
+eg:mCurrentFocus=Window{6474998 u0 com.google.android.apps.cameralite/com.google.android.apps.cameralite.capture.CaptureActivity}
+/*com.google.android.apps.cameralite/com.google.android.apps.cameralite.capture.CaptureActivity为包名*/
+
+/*用以下指令可直接运行该apk*/
+adb shell am start -n com.google.android.apps.cameralite/com.google.android.apps.cameralite.capture.CaptureActivity
+//git 操作
+1.拉取单仓
+2.git branch -a //检查远程分支；
+3.git checkout <分支名> //切换到远程分支；
+4.git status  //检查修改内容
+5. git  add . //添加修改内容
+6.git commit -m "" // 提交修改
+7.git pull <主机名> <分支名> // 合并远程分支
+
+//////////////////////////////////////////////////
+git reset --soft  HEAD~n //撤销上一个commit
+git reset --hard HEAD~n //撤销上一个add以及修改内容
+
+
+adb root
+
+
+adb shell setenforce 0
+
+
+adb shell setprop persist.vendor.mtk.camera.log_level 3
+
+
+adb shell setprop debug.cam.drawid 1
+
+
+adb shell setprop vendor.debug.camera.dbginfo 1
+
+
+adb shell setprop vendor.flash_is_debug 1 
+
+
+adb shell setprop vendor.debug.camera.log.hal3a 1
+
+
+adb shell setprop vendor.debug.hal3a.task 1
+
+
+adb shell setprop vendor.debug.hal3a.taskmgr 1
+
+
+adb shell setprop vendor.debug.aaa.pvlog.enable 1
+
+
+adb shell setprop vendor.debug.ae_mgr.enable 1
+
+
+adb shell setprop vendor.debug.ae.enable 9
+
+
+adb shell setprop vendor.debug.aecalc.enable 9
+
+
+adb shell setprop vendor.debug.ae.log.enable 1
